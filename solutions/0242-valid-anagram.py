@@ -3,11 +3,11 @@
 
 Patrón:  ordenar ambas y comparar
 Señal:   "mismos elementos sin importar el orden"
-Tiempo:  O(n log n)   Espacio: O(n)
+Tiempo:  O(n log n)   Espacio: O(n)  //Para la solucion 1
 Intento: resuelto solo (necesité la sintaxis de sorted)
 Repaso:   2026-08-10
 """
-
+from collections import Counter
 
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
@@ -28,7 +28,18 @@ class Solution2:
             else:
                 d2[t[i]]+=1
         return d1==d2
-        
+class Solution3:
+    def isAnagram(self, s: str, t: str) -> bool:
+        if len(s) != len(t):
+            return False
+        d1, d2 = {}, {}
+        for a, b in zip(s, t):
+            d1[a] = d1.get(a, 0) + 1
+            d2[b] = d2.get(b, 0) + 1
+        return d1 == d2
+class Solution4:
+    def isAnagram(self, s: str, t: str) -> bool:
+        return Counter(s) == Counter(t)       
             
 if __name__ ==  "__main__":
     s = Solution()
