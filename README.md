@@ -1,2 +1,3 @@
-# Leetcodes
-Leetcode Practices
+# LeetCode
+
+Soluciones y bitácora de patrones.
