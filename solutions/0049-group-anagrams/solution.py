@@ -30,7 +30,16 @@ class Solution2:
             d["".join(sorted(x))].append(x)
             
         return list(d.values())
-        
+
+class Solution3:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        d = defaultdict(list)
+        for x in strs:
+            count = [0] * 26
+            for c in x:
+                count[ord(c) - ord('a')] += 1
+            d[tuple(count)].append(x)
+        return list(d.values())
 
 
 if __name__ == "__main__":
