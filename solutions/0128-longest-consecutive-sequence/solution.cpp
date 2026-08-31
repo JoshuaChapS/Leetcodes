@@ -11,7 +11,6 @@ public:
                 int temp = 1;
                 while(s.count(i+temp) == 1){
                     temp++;
-                    i++;
                 }
                 ans = max(ans, temp);
             }
