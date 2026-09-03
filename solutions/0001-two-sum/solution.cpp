@@ -9,6 +9,7 @@ public:
         unordered_map<int, int> seen;
         for (size_t i = 0; i < nums.size(); i++) {
             int comp = target - nums[i];
+            seen.find(comp);
             if (seen.count(comp)) return {seen[comp], (int)i};
             seen[nums[i]] = i;
         }
