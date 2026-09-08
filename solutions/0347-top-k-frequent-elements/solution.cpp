@@ -1,25 +1,36 @@
-#include <iostream>
-#include <unordered_map>
-#include <vector>
+#include <bits/stdc++.h>
 using namespace std;
 
 class Solution {
 public:
     vector<int> topKFrequent(vector<int>& nums, int k) {
-        unordered_map<int, int> count;
-        for (int n : nums) count[n]++;
-
-        vector<vector<int>> buckets(nums.size() + 1);
-        for (auto& p : count) buckets[p.second].push_back(p.first);
-
-        vector<int> res;
-        for (int f = buckets.size() - 1; f > 0; f--) {
-            for (int n : buckets[f]) {
-                res.push_back(n);
-                if ((int)res.size() == k) return res;
-            }
+        unordered_map<int, int> freq;
+        priority_queue<pair<int, int>, vector<pair<int,int>>, greater<pair<int,int>>> pq;
+        pair<int, int> temp;
+        vector<int> ans;
+        for(const int& num: nums){
+            freq[num]++;
         }
-        return res;
+        for(const auto& val: freq){
+            if((int)pq.size()<k){
+                temp = {val.second, val.first};
+                pq.push(temp);
+            }
+            else if (val.second > pq.top().first){
+                temp = {val.second, val.first};
+                pq.push(temp);
+                pq.pop();
+            }
+            
+            
+            
+        }
+        for(int i = 0; i < k; i++){
+            ans.push_back(pq.top().second);
+            pq.pop();
+        }
+        return ans;
+        
     }
 };
 
